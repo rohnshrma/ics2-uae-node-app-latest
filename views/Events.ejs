@@ -1,0 +1,50 @@
+<%- include("partials/header.ejs") -%>
+
+    <div id="membership" class="wrapper text-center header">
+        <h1>recentEvents</h1>
+    </div>
+
+    <!-- recentEvents Section -->
+    <div id="recentEvents" class="container mt-5">
+        <h2 class="text-center mb-4">Upcoming recentEvents</h2>
+
+        <div class="row py-5">
+            <% if (recentEvents && recentEvents.length> 0) { %>
+                <% recentEvents.forEach(event=> { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow">
+                            <% if (event.eventImage) { %>
+                                <img src="<%= event.eventImage %>" class="card-img-top" alt="Event Image">
+                                <% } else { %>
+                                    <img src="default-event.jpg" class="card-img-top" alt="Default Image">
+                                    <% } %>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%= event.eventName %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= event.eventDescription %>
+                                            </p>
+                                            <p class="text-muted"><strong>Venue:</strong>
+                                                <%= event.eventVenue %>
+                                            </p>
+                                            <p class="text-muted">
+                                                <strong>Date & Time:</strong>
+                                                <%= new Date(event.eventDateTime).toLocaleString("en-US", {
+                                                    weekday: "long" , year: "numeric" , month: "long" , day: "numeric" ,
+                                                    hour: "2-digit" , minute: "2-digit" }) %>
+                                            </p>
+                                        </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="col-12">
+                                <p class="text-center text-muted">No Events available.</p>
+                            </div>
+                            <% } %>
+        </div>
+    </div>
+
+
+    <%- include("partials/footer", { recentEvents: (typeof recentEvents !=='undefined' ) ? recentEvents : [] }) -%>

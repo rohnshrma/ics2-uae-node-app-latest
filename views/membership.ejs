@@ -1,0 +1,189 @@
+<%- include("partials/header.ejs") -%>
+
+  <div id="membership" class="wrapper text-center header">
+    <h1>MEMBERSHIP</h1>
+  </div>
+
+  <div class="join">
+    <h2>Why Join?</h2>
+    <p>
+      (ISC)² is an international, nonprofit membership association for
+      security leaders like you. They're committed to helping members learn,
+      grow and thrive. More than 140,000 certified members strong, they
+      empower the professionals who touch every aspect of cyber, information,
+      software, IT and infrastructure security.
+    </p>
+    <p>
+      With (ISC)² certification, you join a globally recognized family of
+      cyber and IT security professionals. By joining our chapter, you'll have
+      access to various resources, educational tools and peer-to-peer
+      networking opportunities, meetings, and much more to help you strengthen
+      your career while helping us accomplish our mission. Even if you don't
+      have a certification with (ISC)², provided you are a cybersecurity
+      professional, or a student, our chapter invites all that want to be part
+      of it to network and learn. Through it we hope you find the value in
+      attaining an (ISC)² certification.
+    </p>
+  </div>
+
+  <div class="guidelines" style="background-color: #dff1f9">
+    <h2>Chapter Membership Guidelines</h2>
+    <b>
+      <p>
+        This section outlines the rights and benefits of being a member of an
+        (ISC)² Chapter as provided by (ISC)² Inc. Please review the following
+        guidelines:
+      </p>
+    </b>
+    <ul>
+      <li>
+        (ISC)2 Chapter membership consists of (ISC)² credential holders and
+        non-(ISC)² credential holders. Members of (ISC)² (credential holder)
+        are not automatically members of an (ISC)² Chapter. Chapter membership
+        is completely voluntary and members may join more than one (ISC)2
+        chapter.
+      </li>
+      <li>
+        Chapter membership dues are determined by the chapter and collected by
+        the chapter. The Annual Maintenance Fees (AMFs) required to maintain
+        an (ISC)² credential are separate from the chapter and are collected
+        by (ISC)².
+      </li>
+      <li>
+        (ISC)² Chapters are open to anyone except those who have been
+        knowingly convicted of criminal activity or conduct that is considered
+        contrary to community standards of justice, honesty or good morals.
+        Individuals who have been convicted of any crime of violence, fraud,
+        embezzlement, murder, rape or any form of computer crime are
+        ineligible to join.
+      </li>
+      <li>
+        An (ISC)² credential holder or other security professional who is
+        employed by entities with a conflict, offer a service, or are
+        commercially motivated to promote alternative certifications/training
+        may become a member of an (ISC)² Chapter; but cannot serve as a
+        chapter officer.
+      </li>
+      <li>
+        A member from another security chapter organization may join as a
+        member of an (ISC)2 Chapter; however, an officer from another chapter
+        organization cannot concurrently serve as a Chapter Officer.
+      </li>
+      <li>
+        Only (ISC)2 credentialed members in good standing may hold the
+        required officer positions of President, Treasurer, Secretary and
+        Membership Chair. Although the position of Vice President is not
+        required, the individual holding this position must be an (ISC)²
+        credential holder.
+      </li>
+      <li>
+        All (ISC)2 Chapter members are required to abide by the (ISC)² Code of
+        Ethics. [For more information, visit isc2.org/ethics]
+      </li>
+      <li>
+        (ISC)² Chapter members shall not promote or advance commercial and/or
+        political agendas, including the promotion of any outside
+        organization, to the chapter membership. Only organizations sponsoring
+        chapter events and activities may be promoted during the sponsored
+        event/activity and subject to guidelines as set by the Chapter.
+      </li>
+      <li>
+        All (ISC)² Chapter members must abide by the (ISC)² Trademark
+        Requirements and Branding Guidelines as outlined in the (ISC)²
+        Official Chapter Handbook.
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="form col">
+      <h2>Membership Application</h2>
+      <form action="/membership" method="POST">
+        <div class="form-group">
+          <label for="firstName">First Name:*</label>
+          <input type="text" class="form-control" name="first_name" id="firstName" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:*</label>
+          <input type="text" class="form-control" name="last_name" id="lastName" required />
+        </div>
+        <div class="form-group">
+          <label for="address1">Address Line 1:*</label>
+          <input type="text" class="form-control" name="address_line1" id="address1" required />
+        </div>
+        <div class="form-group">
+          <label for="address2">Address Line 2:</label>
+          <input type="text" class="form-control" name="address_line2" id="address2" />
+        </div>
+        <div class="form-group">
+          <label for="city">City:*</label>
+          <input type="text" class="form-control" name="city" id="city" required />
+        </div>
+        <div class="form-group">
+          <label for="country">Country:*</label>
+          <select class="form-control" name="country" id="country" required>
+            <option value="">-- Select Country --</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Albania">Albania</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Andorra">Andorra</option>
+            <option value="China">China</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Greece">Greece</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="state">State/Province:*</label>
+          <input type="text" class="form-control" name="state" id="state" required />
+        </div>
+        <div class="form-group">
+          <label for="zipCode">Zip/Postal Code:*</label>
+          <input type="text" class="form-control" name="zip_code" id="zipCode" required />
+        </div>
+
+        <!-- <div class="form-group">
+          <label>Are you a member of (ISC)²?*</label><br />
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="is_member" id="isMemberYes" value="yes" required />
+            <label class="form-check-label" for="isMemberYes">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="is_member" id="isMemberNo" value="no" />
+            <label class="form-check-label" for="isMemberNo">No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="memberId">Member ID:</label>
+          <input type="text" class="form-control" name="member_id" id="memberId" />
+        </div> -->
+
+        <div class="form-group">
+          <label for="title">Title:*</label>
+          <input type="text" class="form-control" name="title" id="title" required />
+        </div>
+        <div class="form-group">
+          <label for="employer">Employer:*</label>
+          <input type="text" class="form-control" name="employer" id="employer" required />
+        </div>
+        <div class="form-group">
+          <label for="primaryPhone">Primary Phone:*</label>
+          <input type="tel" class="form-control" name="primary_phone" id="primaryPhone" required />
+        </div>
+        <div class="form-group">
+          <label for="primaryEmail">Primary Email:*</label>
+          <input type="email" class="form-control" name="primary_email" id="primaryEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="secondaryEmail">Secondary Email:</label>
+          <input type="email" class="form-control" name="secondary_email" id="secondaryEmail" />
+        </div>
+        <div class="form-group">
+          <label for="professionalAssociations">List other professional associations you are a member of:</label>
+          <textarea class="form-control" name="professional_associations" id="professionalAssociations"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+  </div>
+  <%- include("partials/footer", { recentEvents: (typeof recentEvents !=='undefined' ) ? recentEvents : [] }) -%>

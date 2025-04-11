@@ -1,0 +1,104 @@
+<%- include("partials/header") -%>
+  <div id="contact_header" class="header">
+    <h1>Contact</h1>
+  </div>
+
+  <div id="contact-info" class="wrapper">
+    <div class="row">
+      <div class="col-lg-5">
+        <h2>Contact Us</h2>
+        <form action="/contact" method="post">
+          <div class="form-group">
+            <label>Your Name (required)</label>
+            <input class="form-control" type="Name" name="name" />
+          </div>
+          <div class="form-group">
+            <label>Your Email (required)</label><br />
+            <input class="form-control" type="Email" name="email" />
+          </div>
+          <div class="form-group">
+            <label>Subject</label><br />
+            <input class="form-control" type="text" name="subject" />
+          </div>
+          <div class="form-group">
+            <label>Your Message</label><br />
+            <div class="input-group">
+              <textarea rows="8" class="form-control" aria-label="With textarea" name="message"></textarea>
+            </div>
+          </div>
+          <button class="button_send" type="submit">Send</button>
+        </form>
+
+      </div>
+      <div class="col-lg-5">
+        <h5>Menu</h5>
+
+        <ul>
+          <a href="">
+            <li class="text-dark">Home</li>
+          </a>
+          <a href="">
+            <li class="text-dark">About</li>
+          </a>
+          <a href="">
+            <li class="text-dark">Membership</li>
+          </a>
+          <ul>
+            <a href="">
+              <li class="text-dark">Student Members</li>
+            </a>
+          </ul>
+          <a href="">
+            <li class="text-dark">Sponsorship</li>
+          </a>
+          <a href="">
+            <li class="text-dark">Events</li>
+          </a>
+          <ul>
+            <a href="">
+              <li class="text-dark">Event Notes & Pictures</li>
+            </a>
+          </ul>
+          <a href="">
+            <li class="text-dark">Committees</li>
+          </a>
+          <ul>
+            <a href="">
+              <li class="text-dark">Education</li>
+            </a>
+            <a href="">
+              <li class="text-dark">Scholarship Winners</li>
+            </a>
+            <a href="">
+              <li class="text-dark">Hack-A-Thon / Capture The Flag</li>
+            </a>
+          </ul>
+          <a href="">
+            <li class="text-dark">Contact</li>
+          </a>
+          <a href="">
+            <li class="text-dark">Login</li>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mail wrapper">
+    <h4>Mailing Address:</h4>
+    <br />
+    <p>
+      For any traditional mail correspondence, please utilize the address
+      listed below.
+    </p>
+    <br />
+    <p>
+      ISC2 Chapter Long Island Inc.
+      <br />
+      P.O. Box 741
+      <br />
+      Saint James, NY 11780
+    </p>
+  </div>
+
+  <%- include("partials/footer", { recentEvents: (typeof recentEvents !=='undefined' ) ? recentEvents : [] }) -%>

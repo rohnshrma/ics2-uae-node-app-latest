@@ -1,0 +1,69 @@
+<!-- footer -->
+<div class="footer wrapper" style="background-color: #081726;">
+    <div class="row">
+        <div class="col">
+            <b style="color: #097051;">Recent Events</b>
+            <hr>
+            <ul type="disc">
+                <% if (recentEvents && recentEvents.length> 0) { %>
+                    <% recentEvents.forEach(event=> { %>
+                        <li style="color: #081726;">
+                            <a href="/events/<%= event._id %>" style="color: white;">
+                                <strong>
+                                    <%= event.eventName %>
+                                </strong>
+                                - <%= new Date(event.eventDateTime).toLocaleDateString("en-IN", {
+                                    timeZone: "Asia/Kolkata" }) %>
+                            </a>
+                        </li>
+                        <hr>
+                        <% }) %>
+                            <% } else { %>
+                                <li style="color: white;">No recent events available.</li>
+                                <% } %>
+            </ul>
+        </div>
+
+        <div class="col">
+            <b style="color: #097051;">Useful Pages</b>
+            <hr>
+            <ul>
+                <li><a href="/" style="color: white;">Home</a></li>
+                <hr>
+                <li><a href="/about" style="color: white;">About</a></li>
+                <hr>
+                <li><a href="/membership" style="color: white;">Membership</a></li>
+                <hr>
+                <li><a href="/events" style="color: white;">Events</a></li>
+                <hr>
+                <li><a href="/blog" style="color: white;">Blog</a></li>
+                <hr>
+                <li><a href="/contact" style="color: white;">Contact</a></li>
+                <hr>
+            </ul>
+        </div>
+
+        <div class="col">
+            <b style="color: #097051;">Contact Information</b><br>
+            <hr>
+            <a href="https://www.isc2chapter-liny.org" style="color: white;">www.isc2chapter-liny.org</a>
+        </div>
+
+        <div class="col">
+            <b style="color: #097051;">Recent Posts</b>
+            <hr>
+            <ul>
+                <li><a href="#" style="color: white;">(ISC)2 Long Island NY Holds 3rd Annual CTF Event!</a></li>
+                <hr>
+                <li><a href="#" style="color: white;">Let's Capture The Flag!</a></li>
+                <hr>
+                <li><a href="#" style="color: white;">Security Awareness - Creative Techniques and Tools</a></li>
+                <hr>
+                <li><a href="#" style="color: white;">Security Operations Briefing and Panel Discussion</a></li>
+                <hr>
+                <li><a href="#" style="color: white;">Proactive Defense in Lieu of Panicked Response</a></li>
+                <hr>
+            </ul>
+        </div>
+    </div>
+</div>

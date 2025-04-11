@@ -1,0 +1,39 @@
+<%- include("partials/AdminHeader") -%>
+
+    <div class="wrapper container mt-5 create-event">
+        <h2 class="form-title  mb-4">Create Event</h2>
+        <hr>
+
+        <form action="/admin/create-event" method="POST" enctype="multipart/form-data">
+            <div class="form-group event-form-group">
+                <input class="form-control event-form-input" type="text" name="eventName" placeholder="Event Name"
+                    required />
+            </div>
+
+            <div class="form-group event-form-group">
+                <textarea class="form-control event-form-textarea" name="eventDescription"
+                    placeholder="Event Description" required></textarea>
+            </div>
+
+            <div class="form-group event-form-group">
+                <input class="form-control event-form-input" type="text" name="eventVenue" placeholder="Event Venue"
+                    required />
+            </div>
+
+            <div class="form-group event-form-group">
+                <input class="form-control event-form-input" type="datetime-local" name="eventDateTime" required />
+            </div>
+
+            <div class="form-group event-form-group">
+                <!-- Custom file upload -->
+                <label for="eventImage" class="custom-file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload Event Image
+                </label>
+                <input class="form-control event-form-file" type="file" name="eventImage" accept="image/*"
+                    id="eventImage" required />
+            </div>
+
+            <button class="btn btn-success event-form-button" type="submit">Create Event</button>
+        </form>
+    </div>
+    <%- include("partials/footer", { recentEvents: (typeof recentEvents !=='undefined' ) ? recentEvents : [] }) -%>
