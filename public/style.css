@@ -11,7 +11,11 @@ h6 {
 p {
   font-size: 1.1rem;
 }
-
+hr {
+  border: none;
+  border-top: 1px solid #fff;
+  margin: 1rem 0;
+}
 .level2 {
   font-size: 3rem;
 }
@@ -571,6 +575,10 @@ p {
 .admin-event-list-item img {
   width: 100%;
   box-shadow: 0 0 10px 0 #ccc;
+}
+
+#footer li::marker {
+  color: #fff;
 }
 
 /* Responsive Design for smaller screens */
