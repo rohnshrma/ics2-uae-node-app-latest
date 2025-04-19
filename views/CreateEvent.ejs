@@ -1,39 +1,136 @@
 <%- include("partials/AdminHeader") -%>
 
-    <div class="wrapper container mt-5 create-event">
-        <h2 class="form-title  mb-4">Create Event</h2>
-        <hr>
+    <div class="container py-5" style="max-width: 800px;">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <!-- Header Section -->
+                <div class="text-center mb-4">
+                    <h2 class="h3 fw-bold" style="color: #2c3e50;">Create New Event</h2>
+                    <p class="text-muted">Fill in the details to create a new event</p>
+                </div>
 
-        <form action="/admin/create-event" method="POST" enctype="multipart/form-data">
-            <div class="form-group event-form-group">
-                <input class="form-control event-form-input" type="text" name="eventName" placeholder="Event Name"
-                    required />
+                <form action="/admin/create-event" method="POST" enctype="multipart/form-data" class="needs-validation"
+                    novalidate>
+                    <!-- Event Name -->
+                    <div class="mb-4">
+                        <label for="eventName" class="form-label fw-medium">Event Name</label>
+                        <input type="text" class="form-control form-control-lg" id="eventName" name="eventName"
+                            placeholder="Enter event name" required
+                            style="border-radius: 10px; background-color: #f8f9fa;">
+                    </div>
+
+                    <!-- Event Description -->
+                    <div class="mb-4">
+                        <label for="eventDescription" class="form-label fw-medium">Event Description</label>
+                        <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4"
+                            placeholder="Describe your event" required
+                            style="border-radius: 10px; background-color: #f8f9fa;"></textarea>
+                    </div>
+
+                    <!-- Event Venue -->
+                    <div class="mb-4">
+                        <label for="eventVenue" class="form-label fw-medium">Event Venue</label>
+                        <input type="text" class="form-control" id="eventVenue" name="eventVenue"
+                            placeholder="Enter venue location" required
+                            style="border-radius: 10px; background-color: #f8f9fa;">
+                    </div>
+
+                    <!-- Event Date and Time -->
+                    <div class="mb-4">
+                        <label for="eventDateTime" class="form-label fw-medium">Date and Time</label>
+                        <input type="datetime-local" class="form-control" id="eventDateTime" name="eventDateTime"
+                            required style="border-radius: 10px; background-color: #f8f9fa;">
+                    </div>
+
+                    <!-- Event Image Upload -->
+                    <div class="mb-4">
+                        <label for="eventImage" class="form-label fw-medium">Event Image</label>
+                        <div class="file-upload-container" style="position: relative;">
+                            <input type="file" id="eventImage" name="eventImage" accept="image/*" required
+                                class="file-input-hidden" style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                cursor: pointer;
+                z-index: 2;
+            " onchange="updateFileButton(this)">
+                            <button type="button" class="btn btn-upload w-100 py-3" style="
+                background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                color: white;
+                border: none;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            ">
+                                <i class="bi bi-cloud-upload-fill" style="font-size: 1.5rem;"></i>
+                                <span class="btn-upload-text">Choose Event Image</span>
+                            </button>
+                        </div>
+                        <div id="file-selected-name" class="mt-2 text-center text-muted"></div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2 mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border: none; border-radius: 10px; padding: 12px;">
+                            <i class="bi bi-plus-circle me-2"></i> Create Event
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group event-form-group">
-                <textarea class="form-control event-form-textarea" name="eventDescription"
-                    placeholder="Event Description" required></textarea>
-            </div>
-
-            <div class="form-group event-form-group">
-                <input class="form-control event-form-input" type="text" name="eventVenue" placeholder="Event Venue"
-                    required />
-            </div>
-
-            <div class="form-group event-form-group">
-                <input class="form-control event-form-input" type="datetime-local" name="eventDateTime" required />
-            </div>
-
-            <div class="form-group event-form-group">
-                <!-- Custom file upload -->
-                <label for="eventImage" class="custom-file-upload">
-                    <i class="fas fa-cloud-upload-alt"></i> Upload Event Image
-                </label>
-                <input class="form-control event-form-file" type="file" name="eventImage" accept="image/*"
-                    id="eventImage" required />
-            </div>
-
-            <button class="btn btn-success event-form-button" type="submit">Create Event</button>
-        </form>
+        </div>
     </div>
+
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <script>
+        function updateFileButton(input) {
+            const fileSelectedName = document.getElementById('file-selected-name');
+            const uploadButton = input.nextElementSibling;
+            const uploadText = uploadButton.querySelector('.btn-upload-text');
+
+            if (input.files && input.files.length > 0) {
+                const fileName = input.files[0].name;
+                const fileSize = input.files[0].size / 1024 / 1024; // in MB
+
+                if (fileSize > 5) {
+                    fileSelectedName.textContent = 'File too large. Max 5MB allowed.';
+                    fileSelectedName.classList.remove('text-success');
+                    fileSelectedName.classList.add('text-danger');
+                    input.value = ''; // Clear the file input
+                    uploadText.textContent = 'Choose Event Image';
+                } else {
+                    uploadText.textContent = 'Image Selected';
+                    fileSelectedName.textContent = fileName;
+                    fileSelectedName.classList.add('text-success');
+
+                    // Optional: Add a hover effect
+                    uploadButton.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        uploadButton.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            } else {
+                uploadText.textContent = 'Choose Event Image';
+                fileSelectedName.textContent = '';
+            }
+        }
+    </script>
+
+    <style>
+        .btn-upload:hover {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+
     <%- include("partials/footer", { recentEvents: (typeof recentEvents !=='undefined' ) ? recentEvents : [] }) -%>
