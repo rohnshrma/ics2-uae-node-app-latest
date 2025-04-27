@@ -1,50 +1,103 @@
 <%- include("partials/header.ejs") -%>
 
-    <div id="membership" class="wrapper text-center header">
-        <h1>Events</h1>
+    <div class="hero-section" style="
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <div class="container">
+            <h1 class="text-center text-white mb-3" style="
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">Events</h1>
+            <p class="text-center text-white" style="
+            font-size: 1.25rem;
+            opacity: 0.9;">Discover our upcoming events and activities</p>
+        </div>
     </div>
 
-    <!-- recentEvents Section -->
-    <div id="recentEvents" class="container mt-5">
-        <h2 class="text-center mb-4">Upcoming Events</h2>
+    <div class="container mb-5">
+        <h2 class="text-center mb-5" style="
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #1f2937;">Upcoming Events</h2>
 
-        <div class="row py-5">
+        <div class="row g-4">
             <% if (recentEvents && recentEvents.length> 0) { %>
                 <% recentEvents.forEach(event=> { %>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow">
-                            <% if (event.eventImage) { %>
-                                <img src="<%= event.eventImage %>" class="card-img-top" alt="Event Image">
-                                <% } else { %>
-                                    <img src="default-event.jpg" class="card-img-top" alt="Default Image">
-                                    <% } %>
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <%= event.eventName %>
-                                            </h5>
-                                            <p class="card-text">
-                                                <%= event.eventDescription %>
-                                            </p>
-                                            <p class="text-muted"><strong>Venue:</strong>
-                                                <%= event.eventVenue %>
-                                            </p>
-                                            <p class="text-muted">
-                                                <strong>Date & Time:</strong>
-                                                <%= new Date(event.eventDateTime).toLocaleString("en-US", {
-                                                    weekday: "long" , year: "numeric" , month: "long" , day: "numeric" ,
-                                                    hour: "2-digit" , minute: "2-digit" }) %>
-                                            </p>
-                                        </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100" style="
+                        border: none;
+                        border-radius: 1rem;
+                        overflow: hidden;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+                            onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 8px 12px rgba(0, 0, 0, 0.15)'"
+                            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)'">
+
+                            <div style="height: 200px; overflow: hidden;">
+                                <img src="<%= event.eventImage || 'default-event.jpg' %>" class="card-img-top"
+                                    alt="Event Image" style="
+                                    height: 100%;
+                                    width: 100%;
+                                    object-fit: cover;
+                                    transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'"
+                                    onmouseout="this.style.transform='scale(1)'">
+                            </div>
+
+                            <div class="card-body" style="padding: 1.5rem;">
+                                <h5 class="card-title mb-3" style="
+                                font-size: 1.25rem;
+                                font-weight: 600;
+                                color: #1f2937;">
+                                    <%= event.eventName %>
+                                </h5>
+
+                                <p class="card-text mb-4" style="
+                                color: #6b7280;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;">
+                                    <%= event.eventDescription %>
+                                </p>
+
+                                <div class="event-details" style="color: #6b7280;">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-geo-alt-fill me-2"></i>
+                                        <span>
+                                            <%= event.eventVenue %>
+                                        </span>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-calendar-event-fill me-2"></i>
+                                        <span>
+                                            <%= new Date(event.eventDateTime).toLocaleString("en-US", { weekday: "long"
+                                                , year: "numeric" , month: "long" , day: "numeric" , hour: "2-digit" ,
+                                                minute: "2-digit" }) %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <% }) %>
                         <% } else { %>
                             <div class="col-12">
-                                <p class="text-center text-muted">No Events available.</p>
+                                <div class="text-center py-5" style="
+                    background: #f9fafb;
+                    border-radius: 1rem;
+                    border: 2px dashed #e5e7eb;">
+                                    <i class="bi bi-calendar-x" style="
+                        font-size: 3rem;
+                        color: #9ca3af;
+                        margin-bottom: 1rem;"></i>
+                                    <p style="color: #6b7280;">No events available at the moment.</p>
+                                </div>
                             </div>
                             <% } %>
         </div>
     </div>
-
 
     <%- include("partials/footer", { recentEvents: (typeof recentEvents !=='undefined' ) ? recentEvents : [] }) -%>
