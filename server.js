@@ -17,7 +17,7 @@ import Event from "./models/Event.js";
 
 configDotenv();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Connect to MongoDB
 const connectDB = async () => {
